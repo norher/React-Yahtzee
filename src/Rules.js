@@ -57,8 +57,11 @@ class SumDistro extends Rule {
 
 /** Check if full house (3-of-kind and 2-of-kind) */
 
-class FullHouse {
-  // TODO
+class FullHouse extends Rule{
+  evalRoll = (dice) => {
+    const freqs = this.freq(dice);
+    return (freqs.includes(2) && freqs.includes(3)) ? this.score : 0;
+  }
 }
 
 /** Check for small straights. */
@@ -100,7 +103,7 @@ const threeOfKind = new SumDistro({ count: 3 });
 const fourOfKind = new SumDistro({ count: 4 });
 
 // full house scores as flat 25
-const fullHouse = "TODO";
+const fullHouse = new FullHouse({ score: 25});
 
 // small/large straights score as 30/40
 const smallStraight = "TODO";
